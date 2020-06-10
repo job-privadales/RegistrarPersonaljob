@@ -11,6 +11,7 @@ package modelo;
  */
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class Persona {
@@ -36,6 +37,11 @@ public class Persona {
            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+    public Persona(String dui, String apellido, String nombres){
+        this.dui = dui;
+        this.apellidos = apellido;
+        this.nombres = nombres;
+    }
    
    public boolean insertarDatos(){
        try{
@@ -53,6 +59,22 @@ public class Persona {
        }
        
        return false;   
+    }
+   
+      public ArrayList<Persona> consultarRegistros(){
+        ArrayList<Persona> persona = new ArrayList();
+        try {            
+            String miQuery = "Select * from tb_persona;";
+            state = cnn.createStatement();
+            result = state.executeQuery(miQuery);
+            while (result.next()) {
+                persona.add(new Persona(result.getString("dui_persona"), result.getString("apellidos_personas"), result.getString("nombre_persona")));
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return persona;
     }
    public String getDui(){
    
