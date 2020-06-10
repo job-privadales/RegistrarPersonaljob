@@ -28,8 +28,8 @@ public class Persona {
    
    public Persona(){
        try {
-           Class.forName("com.mysql.cj.jdbc.Driver");//Driver de la base de datos
-           cnn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bd_recurso_humano?zeroDateTimeBehavior=CONVERT_TO_NULL","root","");//url de la db, user, pass
+           Class.forName("com.mysql.jdbc.Driver");//Driver de la base de datos
+           cnn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bd_recurso_humano?zeroDateTimeBehavior=convertToNull","root","");//url de la db, user, pass
                    } catch (ClassNotFoundException ex) {
            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
        } catch (SQLException ex) {
